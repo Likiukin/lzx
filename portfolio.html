@@ -378,9 +378,7 @@
   }
   .contact-links a:hover{ background:var(--highlighter); color:var(--ink); transform:translateX(4px); }
 
-  /* ===== ★★★ 新增互动样式 ★★★ ===== */
-
-  /* 留言板区域 */
+  /* ===== ★★★ 留言板样式 ★★★ ===== */
   .interact-section {
     margin-top: 60px;
     padding-top: 40px;
@@ -437,6 +435,7 @@
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
+    margin-bottom: 8px;
   }
   .msg-row input {
     flex: 1;
@@ -489,6 +488,7 @@
     border-bottom: 1px solid rgba(27,42,74,.06);
     display: flex;
     gap: 10px;
+    align-items: baseline;
   }
   .msg-item .name {
     font-weight: 700;
@@ -509,124 +509,6 @@
     font-size: 14px;
     padding: 12px 0;
   }
-
-  /* 浮动 AI 按钮 */
-  .ai-float {
-    position: fixed;
-    bottom: 28px;
-    right: 28px;
-    z-index: 999;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: var(--stamp-red);
-    color: white;
-    border: none;
-    font-size: 28px;
-    cursor: pointer;
-    box-shadow: 0 6px 24px rgba(226,63,53,.35);
-    transition: transform .3s ease, box-shadow .3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .ai-float:hover {
-    transform: scale(1.08) translateY(-4px);
-    box-shadow: 0 10px 32px rgba(226,63,53,.45);
-  }
-
-  /* AI 聊天窗口 */
-  .ai-chat {
-    position: fixed;
-    bottom: 100px;
-    right: 28px;
-    z-index: 998;
-    width: 340px;
-    max-height: 460px;
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(27,42,74,.18);
-    border: 1.5px solid rgba(27,42,74,.1);
-    display: none;
-    flex-direction: column;
-    overflow: hidden;
-    animation: slideUp .3s ease;
-  }
-  .ai-chat.open { display: flex; }
-  @keyframes slideUp {
-    from { opacity:0; transform:translateY(20px) scale(.95); }
-    to { opacity:1; transform:translateY(0) scale(1); }
-  }
-  .ai-chat-header {
-    background: var(--ink);
-    color: white;
-    padding: 16px 20px;
-    font-weight: 700;
-    font-size: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .ai-chat-header .close {
-    background: none;
-    border: none;
-    color: rgba(255,255,255,.7);
-    font-size: 20px;
-    cursor: pointer;
-    padding: 0 4px;
-  }
-  .ai-chat-header .close:hover { color: white; }
-  .ai-chat-body {
-    padding: 16px 20px;
-    overflow-y: auto;
-    flex: 1;
-    max-height: 300px;
-  }
-  .ai-chat-msg {
-    margin-bottom: 12px;
-    display: flex;
-    gap: 8px;
-  }
-  .ai-chat-msg .bubble {
-    background: var(--paper-alt);
-    padding: 10px 14px;
-    border-radius: 12px 12px 12px 4px;
-    font-size: 14px;
-    color: var(--ink);
-    max-width: 85%;
-  }
-  .ai-chat-msg.user { flex-direction: row-reverse; }
-  .ai-chat-msg.user .bubble {
-    background: var(--stamp-red);
-    color: white;
-    border-radius: 12px 12px 4px 12px;
-  }
-  .ai-chat-input {
-    display: flex;
-    gap: 8px;
-    padding: 12px 16px 16px;
-    border-top: 1px solid rgba(27,42,74,.08);
-  }
-  .ai-chat-input input {
-    flex: 1;
-    padding: 8px 12px;
-    border: 1.5px solid rgba(27,42,74,.12);
-    border-radius: 999px;
-    font-size: 14px;
-    font-family: inherit;
-  }
-  .ai-chat-input input:focus { outline: none; border-color: var(--stamp-red); }
-  .ai-chat-input button {
-    padding: 8px 18px;
-    border-radius: 999px;
-    border: none;
-    background: var(--stamp-red);
-    color: white;
-    font-weight: 700;
-    font-size: 13px;
-    cursor: pointer;
-  }
-  .ai-chat-input button:hover { opacity:.85; }
 
   footer{
     text-align:center; padding:34px 0 50px; font-size:12.5px; color:var(--ink-soft);
@@ -811,11 +693,10 @@
       </div>
     </div>
 
-    <!-- ===== ★★★ 互动区域 ★★★ ===== -->
+    <!-- ★★★★★ 互动区域：留言板 + 加油 ★★★★★ -->
     <div class="interact-section reveal">
       <div class="interact-grid">
-
-        <!-- 左侧：留言板 -->
+        <!-- 左：留言板 -->
         <div class="interact-box">
           <h4>💬 留言板 <span class="count" id="msgCount">0</span></h4>
           <div class="msg-row">
@@ -829,7 +710,7 @@
           </div>
         </div>
 
-        <!-- 右侧：今日状态 / 小彩蛋 -->
+        <!-- 右：访问量 + 兴趣标签 -->
         <div class="interact-box" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
           <div style="font-size:48px;margin-bottom:8px;">🌱</div>
           <h4 style="font-size:18px;margin-bottom:4px;">今天也在生长</h4>
@@ -843,7 +724,6 @@
             <span style="background:rgba(255,217,61,.25);color:#b8940a;padding:4px 14px;border-radius:999px;font-size:13px;">⛰️ 徒步</span>
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -854,27 +734,9 @@
   <br><span style="font-size:11px;color:#bbb;">君子论迹不论心 · 持续生长中</span>
 </footer>
 
-<!-- ===== ★★★ AI 浮动按钮 + 聊天窗口 ★★★ ===== -->
-<button class="ai-float" id="aiToggle" aria-label="打开AI助手">🤖</button>
-<div class="ai-chat" id="aiChat">
-  <div class="ai-chat-header">
-    <span>🤖 李兆昕的 AI 小助手</span>
-    <button class="close" id="aiClose">✕</button>
-  </div>
-  <div class="ai-chat-body" id="aiBody">
-    <div class="ai-chat-msg">
-      <div class="bubble">你好呀！我是李兆昕的 AI 小助手 👋 想聊点什么？</div>
-    </div>
-  </div>
-  <div class="ai-chat-input">
-    <input type="text" id="aiInput" placeholder="说点什么..." />
-    <button id="aiSend">发送</button>
-  </div>
-</div>
-
 <script>
   // =============================================
-  // 1. 滚动触发动画（不变）
+  // 1. 滚动触发动画（已有，保持不变）
   // =============================================
   const revealEls = document.querySelectorAll('.reveal, .skill-row');
   const io = new IntersectionObserver((entries)=>{
@@ -888,7 +750,7 @@
   revealEls.forEach(el=>io.observe(el));
 
   // =============================================
-  // 2. 雷达图重播（不变）
+  // 2. 雷达图重播（已有，保持不变）
   // =============================================
   (function() {
     const replayBtn = document.getElementById('radarReplay');
@@ -970,7 +832,6 @@
       localStorage.setItem('lzx_messages', JSON.stringify(messages));
       renderMessages();
       msgInput.value = '';
-      // 滚动到底部
       msgList.scrollTop = msgList.scrollHeight;
     }
 
@@ -985,10 +846,8 @@
     heartBtn.addEventListener('click', function() {
       hearts += 1;
       updateHeart();
-      // 小动画反馈
       this.style.transform = 'scale(1.2)';
       setTimeout(() => { this.style.transform = 'scale(1)'; }, 200);
-      // 显示提示
       const orig = this.textContent;
       this.textContent = '❤️ 谢谢你！';
       setTimeout(() => { this.textContent = orig; }, 1200);
@@ -1000,7 +859,7 @@
   })();
 
   // =============================================
-  // 4. ★★★ 访问量计数器 ★★★
+  // 4. ★★★ 访问量计数 ★★★
   // =============================================
   (function() {
     const visitEl = document.getElementById('visitCount');
@@ -1008,62 +867,6 @@
     visits += 1;
     localStorage.setItem('lzx_visits', String(visits));
     visitEl.textContent = visits;
-  })();
-
-  // =============================================
-  // 5. ★★★ AI 助手聊天 ★★★
-  // =============================================
-  (function() {
-    const toggleBtn = document.getElementById('aiToggle');
-    const chatBox = document.getElementById('aiChat');
-    const closeBtn = document.getElementById('aiClose');
-    const aiBody = document.getElementById('aiBody');
-    const aiInput = document.getElementById('aiInput');
-    const aiSend = document.getElementById('aiSend');
-
-    const replies = [
-      '嗯嗯，我在听 👂 继续说吧！',
-      '哇，有意思！能再多说一点吗？',
-      '我懂你的意思 😊 然后呢？',
-      '这个想法好棒！你打算怎么实现呀？',
-      '哈哈，你总是能想到这些有趣的事 ✨',
-      '收到！我会帮你转达给李兆昕的 📩',
-    ];
-
-    function openChat() {
-      chatBox.classList.add('open');
-    }
-    function closeChat() {
-      chatBox.classList.remove('open');
-    }
-
-    toggleBtn.addEventListener('click', openChat);
-    closeBtn.addEventListener('click', closeChat);
-    // 点击外部关闭（点击背景不关，保留用户选择）
-
-    function addAIMessage(text, isUser = false) {
-      const div = document.createElement('div');
-      div.className = 'ai-chat-msg' + (isUser ? ' user' : '');
-      div.innerHTML = `<div class="bubble">${text}</div>`;
-      aiBody.appendChild(div);
-      aiBody.scrollTop = aiBody.scrollHeight;
-    }
-
-    function handleSend() {
-      const text = aiInput.value.trim();
-      if (!text) return;
-      addAIMessage(text, true);
-      aiInput.value = '';
-      // 模拟 AI 回复（随机延迟）
-      const delay = 400 + Math.random() * 600;
-      setTimeout(() => {
-        const reply = replies[Math.floor(Math.random() * replies.length)];
-        addAIMessage(reply);
-      }, delay);
-    }
-
-    aiSend.addEventListener('click', handleSend);
-    aiInput.addEventListener('keydown', e => { if (e.key === 'Enter') handleSend(); });
   })();
 </script>
 
