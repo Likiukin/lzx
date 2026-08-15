@@ -54,7 +54,6 @@
 
   .wrap{max-width:var(--max-w); margin:0 auto; padding:0 28px;}
 
-  /* ---------- NAV ---------- */
   header.nav{
     position:sticky; top:0; z-index:50;
     background:rgba(254,254,252,.85);
@@ -86,7 +85,6 @@
   nav.links a:hover::after{width:100%;}
   @media (max-width:640px){ nav.links{display:none;} }
 
-  /* ---------- HERO ---------- */
   .hero{
     position:relative;
     padding:96px 0 120px;
@@ -198,7 +196,6 @@
   .scroll-cue .pencil{ font-size:16px; animation:bob 1.6s ease-in-out infinite; }
   @keyframes bob{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(6px) rotate(6deg);} }
 
-  /* ---------- SECTION SHELL ---------- */
   section{ padding:90px 0; }
   .page-divider{
     display:flex; align-items:center; gap:14px; margin-bottom:52px;
@@ -219,7 +216,6 @@
   }
   .reveal.in-view{ opacity:1; transform:translateY(0); }
 
-  /* ---------- ABOUT ---------- */
   .about-grid{
     display:grid; grid-template-columns:1.3fr 1fr; gap:56px; align-items:start;
   }
@@ -255,7 +251,6 @@
   .id-row span:first-child{ color:var(--ink-soft); }
   .id-row span:last-child{ font-weight:700; }
 
-  /* ---------- PROJECTS ---------- */
   .cards-grid{
     display:grid; grid-template-columns:repeat(2, 1fr); gap:26px;
   }
@@ -288,7 +283,6 @@
   .card h3{ font-size:19px; margin-bottom:8px; }
   .card p{ font-size:14.5px; color:var(--ink-soft); margin:0; }
 
-  /* ---------- SKILLS (radar) ---------- */
   .radar-panel{ position:relative; display:flex; justify-content:center; flex-wrap:wrap; gap:20px; }
   .radar-replay{
     display:inline-flex; align-items:center; gap:6px;
@@ -359,7 +353,6 @@
     fill:var(--stamp-red); font-size:11.5px;
   }
 
-  /* ---------- CONTACT ---------- */
   .contact-box{
     background:var(--ink); color:var(--paper);
     border-radius:20px; padding:56px 44px;
@@ -474,29 +467,33 @@
       <span class="num">作品 / 项目展示</span>
     </div>
     <div class="cards-grid reveal">
+      <!-- ★★★ 卡片1：数码探索 ★★★ -->
       <div class="card">
-        <div class="score">A+</div>
-        <span class="tag">学科竞赛</span>
-        <h3>信息学竞赛作品</h3>
-        <p>参加校内信息学竞赛，完成了一个算法优化项目，提升了逻辑思维和代码实现能力。</p>
+        <div class="score">✦</div>
+        <span class="tag">数码探索</span>
+        <h3>数码设备研究与体验</h3>
+        <p>喜欢研究各种数码产品——手机、相机、耳机、智能设备，关注技术迭代与设计美学，乐于分享真实使用感受。</p>
       </div>
+      <!-- ★★★ 卡片2：户外徒步 ★★★ -->
       <div class="card">
-        <div class="score">✓</div>
-        <span class="tag">社团活动</span>
-        <h3>科技社创意制作</h3>
-        <p>与社团伙伴合作完成了一款智能小装置，我主要负责结构设计和展示汇报，获得校内科技节优秀奖。</p>
+        <div class="score">⛰️</div>
+        <span class="tag">户外徒步</span>
+        <h3>山野徒步与自然记录</h3>
+        <p>周末常去山野徒步，用镜头记录沿途风景。在行走中感受自然节奏，也锻炼了体能与毅力。</p>
       </div>
+      <!-- ★★★ 卡片3：AI 工具应用 ★★★ -->
       <div class="card">
-        <div class="score">A</div>
-        <span class="tag">个人作品</span>
-        <h3>个人主页 & 设计练习</h3>
-        <p>自学 HTML/CSS 及基础交互，独立完成了多个静态网页设计，这个主页就是其中一份练习的整合。</p>
+        <div class="score">🤖</div>
+        <span class="tag">AI 工具应用</span>
+        <h3>用 AI 辅助创作与提效</h3>
+        <p>熟练使用 ChatGPT、Claude、Midjourney 等 AI 工具，辅助完成文案写作、图像生成、学习资料整理等任务。</p>
       </div>
+      <!-- ★★★ 卡片4：持续生长 ★★★ -->
       <div class="card">
-        <div class="score">✓</div>
-        <span class="tag">志愿服务</span>
-        <h3>社区志愿宣传</h3>
-        <p>参与社区垃圾分类宣传活动，负责平面物料设计（海报、传单）和现场讲解，累计服务 20+ 小时。</p>
+        <div class="score">📖</div>
+        <span class="tag">持续生长</span>
+        <h3>阅读 · 摄影 · 好奇心</h3>
+        <p>保持阅读习惯，喜欢用相机记录日常瞬间，对世界永远保持好奇——这些事让我成为现在的自己。</p>
       </div>
     </div>
     <div style="text-align:center;margin-top:36px;">
@@ -518,11 +515,9 @@
       </button>
       <div class="radar-wrap reveal" id="radarWrap">
         <svg class="radar-svg" viewBox="0 0 460 360" role="img" aria-label="六维个人面板：财富20，社交19，魅力17，智识23，体魄30，心量37">
-          <!-- grid rings -->
           <polygon class="radar-grid" points="230,65 329.6,122.5 329.6,237.5 230,295 130.4,237.5 130.4,122.5" />
           <polygon class="radar-grid" points="230,103.3 296.4,141.65 296.4,218.35 230,256.7 163.6,218.35 163.6,141.65" />
           <polygon class="radar-grid" points="230,141.7 263.2,160.85 263.2,199.15 230,218.3 196.8,199.15 196.8,160.85" />
-          <!-- axes -->
           <line class="radar-axis" x1="230" y1="180" x2="230" y2="65" />
           <line class="radar-axis" x1="230" y1="180" x2="329.6" y2="122.5" />
           <line class="radar-axis" x1="230" y1="180" x2="329.6" y2="237.5" />
@@ -530,10 +525,8 @@
           <line class="radar-axis" x1="230" y1="180" x2="130.4" y2="237.5" />
           <line class="radar-axis" x1="230" y1="180" x2="130.4" y2="122.5" />
           
-          <!-- ★★★ 六维数据多边形（新坐标：财富20、社交19、魅力17、智识23、体魄30、心量37）★★★ -->
           <polygon class="radar-data" id="radarData" points="230,157 248.9,169.1 246.9,189.8 230,206.5 200.1,197.3 193.2,158.7" />
           
-          <!-- ★★★ 圆点组（新坐标）★★★ -->
           <g class="radar-dots" id="radarDots">
             <circle cx="230" cy="157" r="4" class="radar-dot" />
             <circle cx="248.9" cy="169.1" r="4" class="radar-dot" />
@@ -543,7 +536,6 @@
             <circle cx="193.2" cy="158.7" r="4" class="radar-dot" />
           </g>
           
-          <!-- ★★★ 标签数值已更新 ★★★ -->
           <text class="radar-label" x="230" y="26" text-anchor="middle">财富 <tspan class="pct">20</tspan></text>
           <text class="radar-label" x="353" y="105" text-anchor="start">社交 <tspan class="pct">19</tspan></text>
           <text class="radar-label" x="353" y="255" text-anchor="start">魅力 <tspan class="pct">17</tspan></text>
