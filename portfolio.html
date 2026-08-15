@@ -52,7 +52,7 @@
   }
   .brand{display:flex; align-items:center; gap:10px; font-weight:900; font-size:18px;}
   .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--stamp-red);}
-  nav.links{display:flex; gap:26px; font-size:14px; font-weight:500;}
+  nav.links{display:flex; gap:26px; font-size:14px; font-weight:500; flex-wrap:wrap;}
   nav.links a{padding-bottom:3px; border-bottom:2px solid transparent; transition:.2s;}
   nav.links a:hover{border-bottom-color:var(--stamp-red);}
   @media (max-width:640px){ nav.links{display:none;} }
@@ -76,7 +76,7 @@
   .btn.ghost{background:transparent; color:var(--ink);}
   .btn.ghost:hover{transform:translateY(-2px); box-shadow:0 4px 12px var(--highlighter);}
 
-  /* ----- 通用 ----- */
+  /* ----- 通用板块样式（横线+序号） ----- */
   section{padding:80px 0;}
   .page-divider{
     display:flex; align-items:center; gap:14px; margin-bottom:40px;
@@ -172,7 +172,7 @@
   .reveal.in-view .radar-label{opacity:1; transform:translateY(0);}
   .radar-label .pct{font-family:monospace; font-weight:600; fill:var(--stamp-red);}
 
-  /* ----- 联系方式 ----- */
+  /* ----- 联系方式（04） ----- */
   .contact-box{
     background:var(--ink); color:var(--paper);
     border-radius:20px; padding:48px 40px;
@@ -187,40 +187,34 @@
   }
   .contact-links a:hover{background:var(--highlighter); color:var(--ink);}
 
-  /* ===== 互动区域 ===== */
-  .interact-section {
-    margin-top: 60px;
-    padding: 30px 0 20px;
-    border-top: 3px solid var(--stamp-red);
-    background: var(--paper-alt);
-    border-radius: 16px;
-  }
-  .interact-section .wrap {
-    padding: 0 28px;
-  }
-  .interact-grid {
+  /* ===== ★★★ 留言板（05）独立板块 ★★★ ===== */
+  .guestbook-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
   }
   @media (max-width: 760px) {
-    .interact-grid { grid-template-columns: 1fr; }
+    .guestbook-grid { grid-template-columns: 1fr; }
   }
-  .interact-box {
-    background: white;
+  .guestbook-box {
+    background: var(--paper);
+    border: 1.5px solid rgba(27,42,74,.12);
     border-radius: 14px;
-    padding: 24px 28px;
-    box-shadow: 0 2px 8px rgba(0,0,0,.04);
-    border: 1px solid rgba(27,42,74,.08);
+    padding: 28px 30px;
+    transition: transform .3s, box-shadow .3s;
   }
-  .interact-box h4 {
+  .guestbook-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 6px 8px 0 rgba(27,42,74,.06);
+  }
+  .guestbook-box h4 {
     font-size: 18px;
     margin-bottom: 16px;
     display: flex;
     align-items: center;
     gap: 8px;
   }
-  .interact-box h4 .badge {
+  .guestbook-box h4 .badge {
     background: var(--stamp-red);
     color: white;
     font-size: 13px;
@@ -236,7 +230,8 @@
     font-size: 14px;
     font-family: inherit;
     margin-bottom: 10px;
-    background: var(--paper);
+    background: var(--paper-alt);
+    transition: border-color .2s;
   }
   .msg-input:focus {
     outline: none;
@@ -324,7 +319,7 @@
     margin-bottom: 8px;
   }
   .visit-box .big-number {
-    font-size: 36px;
+    font-size: 40px;
     font-weight: 900;
     color: var(--stamp-red);
     margin: 4px 0;
@@ -351,17 +346,16 @@
 </head>
 <body>
 
-<!-- ===== 导航（新增「留言」链接） ===== -->
+<!-- ===== 导航 ===== -->
 <header class="nav">
   <div class="nav-inner">
     <div class="brand"><span class="dot"></span>李兆昕</div>
     <nav class="links">
-      <!-- ★★★ 新增「留言」链接，排在最前面 ★★★ -->
-      <a href="#guestbook">留言</a>
       <a href="#about">关于我</a>
       <a href="#projects">作品展示</a>
       <a href="#skills">技能</a>
       <a href="#contact">联系方式</a>
+      <a href="#guestbook" style="border-bottom-color:var(--stamp-red);">留言</a>
     </nav>
   </div>
 </header>
@@ -382,7 +376,7 @@
   <div style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);font-size:13px;color:var(--ink-soft);">✎ 向下滚动</div>
 </section>
 
-<!-- ===== 关于我 ===== -->
+<!-- ===== 01 关于我 ===== -->
 <section id="about">
   <div class="wrap">
     <div class="page-divider">
@@ -409,7 +403,7 @@
   </div>
 </section>
 
-<!-- ===== 作品展示 ===== -->
+<!-- ===== 02 作品展示 ===== -->
 <section id="projects" class="grid-bg">
   <div class="wrap">
     <div class="page-divider">
@@ -424,7 +418,7 @@
   </div>
 </section>
 
-<!-- ===== 技能（雷达图） ===== -->
+<!-- ===== 03 技能（雷达图） ===== -->
 <section id="skills">
   <div class="wrap">
     <div class="page-divider">
@@ -464,13 +458,12 @@
   </div>
 </section>
 
-<!-- ===== 联系方式 + 互动（留言板设了 id） ===== -->
+<!-- ===== 04 联系方式 ===== -->
 <section id="contact">
   <div class="wrap">
     <div class="page-divider">
-      <span class="tab">04</span><span class="rule"></span><span class="num">联系 · 互动</span>
+      <span class="tab">04</span><span class="rule"></span><span class="num">联系方式</span>
     </div>
-    <!-- 联系方式 -->
     <div class="contact-box reveal">
       <div>
         <h2 style="font-size:clamp(26px,4vw,34px);">想聊聊？<br>随时找我。</h2>
@@ -482,36 +475,42 @@
         <a href="https://github.com/Likiukin" target="_blank">🔗 GitHub / 作品集</a>
       </div>
     </div>
+  </div>
+</section>
 
-    <!-- ★★★★★ 互动区域（已添加 id="guestbook"，供导航跳转） ★★★★★ -->
-    <div class="interact-section reveal" id="guestbook">
-      <div class="interact-grid">
-        <!-- 左：留言板 -->
-        <div class="interact-box">
-          <h4>💬 留言板 <span class="badge" id="msgCount">0</span></h4>
-          <div class="msg-row">
-            <input type="text" id="msgName" class="msg-input" placeholder="你的名字" style="flex:1;">
-            <button class="btn-sm heart" id="heartBtn">❤️ 加油 <span id="heartCount">0</span></button>
-          </div>
-          <input type="text" id="msgInput" class="msg-input" placeholder="想对李兆昕说什么？" style="margin-bottom:8px;">
-          <button class="btn-sm" id="sendMsgBtn">发送留言 →</button>
-          <div class="msg-list" id="msgList">
-            <div class="empty-msg">还没有留言，你来当第一个吧 ✨</div>
-          </div>
+<!-- ===== 05 留言板（全新独立板块） ===== -->
+<section id="guestbook" style="background:var(--paper-alt);border-top:1px solid rgba(27,42,74,.06);">
+  <div class="wrap">
+    <div class="page-divider">
+      <span class="tab">05</span><span class="rule"></span><span class="num">留言板</span>
+    </div>
+    <div class="guestbook-grid reveal">
+      <!-- 左：留言输入 + 列表 -->
+      <div class="guestbook-box">
+        <h4>💬 说点什么 <span class="badge" id="msgCount">0</span></h4>
+        <div class="msg-row">
+          <input type="text" id="msgName" class="msg-input" placeholder="你的名字" style="flex:1;">
+          <button class="btn-sm heart" id="heartBtn">❤️ 加油 <span id="heartCount">0</span></button>
         </div>
+        <input type="text" id="msgInput" class="msg-input" placeholder="想对李兆昕说什么？" style="margin-bottom:8px;">
+        <button class="btn-sm" id="sendMsgBtn">发送留言 →</button>
+        <div class="msg-list" id="msgList">
+          <div class="empty-msg">还没有留言，你来当第一个吧 ✨</div>
+        </div>
+      </div>
 
-        <!-- 右：访问量 + 标签 -->
-        <div class="interact-box visit-box">
-          <div class="icon">🌱</div>
-          <h4 style="font-size:20px;margin:4px 0;">今天也在生长</h4>
-          <div class="big-number" id="visitCount">0</div>
-          <p style="color:var(--ink-soft);font-size:14px;">页面累计访问次数</p>
-          <div class="tag-group">
-            <span>📸 摄影</span>
-            <span>🤖 AI 探索</span>
-            <span>⛰️ 徒步</span>
-          </div>
+      <!-- 右：访问量 + 兴趣标签 -->
+      <div class="guestbook-box visit-box">
+        <div class="icon">🌱</div>
+        <h4 style="font-size:20px;margin:4px 0;">今天也在生长</h4>
+        <div class="big-number" id="visitCount">0</div>
+        <p style="color:var(--ink-soft);font-size:14px;">页面累计访问次数</p>
+        <div class="tag-group">
+          <span>📸 摄影</span>
+          <span>🤖 AI 探索</span>
+          <span>⛰️ 徒步</span>
         </div>
+        <p style="margin-top:14px;font-size:13px;color:#aaa;max-width:240px;">「君子论迹不论心 · 持续生长中」</p>
       </div>
     </div>
   </div>
@@ -519,7 +518,6 @@
 
 <footer>
   日照第一中学（海曲校区） · 李兆昕的个人主页 —— 第 1 页 / 共 1 页
-  <br><span style="font-size:11px;color:#bbb;">君子论迹不论心 · 持续生长中</span>
 </footer>
 
 <script>
