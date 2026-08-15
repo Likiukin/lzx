@@ -322,7 +322,6 @@
   .radar-grid{ fill:none; stroke:rgba(27,42,74,.16); stroke-width:1; }
   .radar-axis{ stroke:rgba(27,42,74,.16); stroke-width:1; }
 
-  /* 雷达数据多边形 */
   .radar-data{
     fill:rgba(226,63,53,.16);
     stroke:var(--stamp-red);
@@ -333,14 +332,12 @@
     transform-origin:230px 180px;
     transition:transform 1.1s cubic-bezier(.2,.8,.2,1);
   }
-  /* 圆点组 */
   .radar-dots{
     transform:scale(0);
     transform-origin:230px 180px;
     transition:transform 1.1s cubic-bezier(.2,.8,.2,1), opacity 0.5s ease 0.9s;
     opacity:0;
   }
-  /* 当 in-view 时展开 */
   .reveal.in-view .radar-data,
   .reveal.in-view .radar-dots {
     transform:scale(1);
@@ -414,7 +411,7 @@
   <div class="wrap" style="padding-left:40px;">
     <div class="eyebrow">学生成长记录 · 2026</div>
     <h1>你好，我是<br><span class="mark">李兆昕</span></h1>
-    <p class="sub">一名对代码、设计和世界都保持好奇的高中生，喜欢把想法做成看得见、摸得着的东西。</p>
+    <p class="sub">一名对<strong>AI技术</strong>、设计和世界都保持好奇的高中生，喜欢把想法做成看得见、摸得着的东西。</p>
     <div class="meta-line">
       <span>📍 日照第一中学（海曲校区）</span>
       <span>·</span>
@@ -448,8 +445,8 @@
     <div class="about-grid reveal">
       <div>
         <h2>爱折腾的<span class="hi">好奇心</span>，是我最大的驱动力</h2>
-        <p>我是李兆昕，目前就读于日照第一中学海曲校区。平时喜欢研究一些和课本"无关"的事情——写代码、做设计、参加各种竞赛和社团活动。</p>
-        <p>我相信学习不只发生在教室里：一个周末做出来的小项目、一次社团里的合作，往往比一张试卷更能告诉我"我是谁"。这个页面记录的，就是这些正在发生的成长。</p>
+        <p>我是李兆昕，目前就读于日照第一中学海曲校区。平时喜欢研究一些和课本"无关"的事情——<strong>探索AI工具</strong>、做设计、参加各种竞赛和社团活动。</p>
+        <p>我相信学习不只发生在教室里：一个周末<strong>用AI辅助完成的小项目</strong>、一次社团里的合作，往往比一张试卷更能告诉我"我是谁"。这个页面记录的，就是这些正在发生的成长。</p>
       </div>
       <div class="id-card">
         <div class="id-head">
@@ -462,7 +459,6 @@
         <div class="id-row"><span>学校</span><span>日照第一中学</span></div>
         <div class="id-row"><span>校区</span><span>海曲校区</span></div>
         <div class="id-row"><span>身份</span><span>在读学生</span></div>
-        <!-- ★★★ 兴趣方向已改为“数码 · 徒步” ★★★ -->
         <div class="id-row"><span>兴趣方向</span><span>数码 · 徒步</span></div>
         <div class="id-row" style="border-bottom:none;"><span>状态</span><span style="color:var(--check-green);">持续成长中</span></div>
       </div>
@@ -521,7 +517,7 @@
         <span class="icon">↻</span>重新播放
       </button>
       <div class="radar-wrap reveal" id="radarWrap">
-        <svg class="radar-svg" viewBox="0 0 460 360" role="img" aria-label="六维个人面板：财富88，社交92，魅力76，智识95，体魄65，心量70">
+        <svg class="radar-svg" viewBox="0 0 460 360" role="img" aria-label="六维个人面板：财富20，社交19，魅力17，智识23，体魄30，心量37">
           <!-- grid rings -->
           <polygon class="radar-grid" points="230,65 329.6,122.5 329.6,237.5 230,295 130.4,237.5 130.4,122.5" />
           <polygon class="radar-grid" points="230,103.3 296.4,141.65 296.4,218.35 230,256.7 163.6,218.35 163.6,141.65" />
@@ -534,26 +530,26 @@
           <line class="radar-axis" x1="230" y1="180" x2="130.4" y2="237.5" />
           <line class="radar-axis" x1="230" y1="180" x2="130.4" y2="122.5" />
           
-          <!-- 六维数据多边形 -->
-          <polygon class="radar-data" id="radarData" points="230,78.8 321.6,127.1 305.7,223.7 230,289.25 165.3,217.4 160.3,139.75" />
+          <!-- ★★★ 六维数据多边形（新坐标：财富20、社交19、魅力17、智识23、体魄30、心量37）★★★ -->
+          <polygon class="radar-data" id="radarData" points="230,157 248.9,169.1 246.9,189.8 230,206.5 200.1,197.3 193.2,158.7" />
           
-          <!-- 圆点组 -->
+          <!-- ★★★ 圆点组（新坐标）★★★ -->
           <g class="radar-dots" id="radarDots">
-            <circle cx="230" cy="78.8" r="4" class="radar-dot" />
-            <circle cx="321.6" cy="127.1" r="4" class="radar-dot" />
-            <circle cx="305.7" cy="223.7" r="4" class="radar-dot" />
-            <circle cx="230" cy="289.25" r="4" class="radar-dot" />
-            <circle cx="165.3" cy="217.4" r="4" class="radar-dot" />
-            <circle cx="160.3" cy="139.75" r="4" class="radar-dot" />
+            <circle cx="230" cy="157" r="4" class="radar-dot" />
+            <circle cx="248.9" cy="169.1" r="4" class="radar-dot" />
+            <circle cx="246.9" cy="189.8" r="4" class="radar-dot" />
+            <circle cx="230" cy="206.5" r="4" class="radar-dot" />
+            <circle cx="200.1" cy="197.3" r="4" class="radar-dot" />
+            <circle cx="193.2" cy="158.7" r="4" class="radar-dot" />
           </g>
           
-          <!-- 标签 -->
-          <text class="radar-label" x="230" y="26" text-anchor="middle">财富 <tspan class="pct">88</tspan></text>
-          <text class="radar-label" x="353" y="105" text-anchor="start">社交 <tspan class="pct">92</tspan></text>
-          <text class="radar-label" x="353" y="255" text-anchor="start">魅力 <tspan class="pct">76</tspan></text>
-          <text class="radar-label" x="230" y="335" text-anchor="middle">智识 <tspan class="pct">95</tspan></text>
-          <text class="radar-label" x="107" y="255" text-anchor="end">体魄 <tspan class="pct">65</tspan></text>
-          <text class="radar-label" x="107" y="105" text-anchor="end">心量 <tspan class="pct">70</tspan></text>
+          <!-- ★★★ 标签数值已更新 ★★★ -->
+          <text class="radar-label" x="230" y="26" text-anchor="middle">财富 <tspan class="pct">20</tspan></text>
+          <text class="radar-label" x="353" y="105" text-anchor="start">社交 <tspan class="pct">19</tspan></text>
+          <text class="radar-label" x="353" y="255" text-anchor="start">魅力 <tspan class="pct">17</tspan></text>
+          <text class="radar-label" x="230" y="335" text-anchor="middle">智识 <tspan class="pct">23</tspan></text>
+          <text class="radar-label" x="107" y="255" text-anchor="end">体魄 <tspan class="pct">30</tspan></text>
+          <text class="radar-label" x="107" y="105" text-anchor="end">心量 <tspan class="pct">37</tspan></text>
         </svg>
       </div>
     </div>
@@ -570,7 +566,6 @@
       <div class="contact-links">
         <a href="mailto:a776234813@outlook.com">✉️ a776234813@outlook.com</a>
         <a href="#">💬 微信：lzxzhzxzl</a>
-        <!-- ★★★ GitHub 链接已修改 ★★★ -->
         <a href="https://github.com/Likiukin" target="_blank">🔗 GitHub / 作品集</a>
       </div>
     </div>
@@ -582,7 +577,6 @@
 </footer>
 
 <script>
-  // scroll reveal
   const revealEls = document.querySelectorAll('.reveal, .skill-row');
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{
@@ -594,7 +588,6 @@
   }, { threshold: 0.2 });
   revealEls.forEach(el=>io.observe(el));
 
-  // 重播逻辑
   (function() {
     const replayBtn = document.getElementById('radarReplay');
     const radarData = document.getElementById('radarData');
