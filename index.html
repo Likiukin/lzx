@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>李兆昕 · 个人主页</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Zhi+Mang+Xing&family=Ma+Shan+Zheng&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ================= 设计变量 ================= */
+:root{
+  --bg:#f6f5f1; --bg-2:#efedf6;
+  --surface:rgba(255,255,255,.66); --surface-strong:rgba(255,255,255,.92);
+  --ink:#1b2337; --ink-soft:#565f78; --ink-faint:#8b94ab;
+  --line:rgba(27,35,55,.10); --line-strong:rgba(27,35,55,.18);
+  --c1:#ff5d73; --c2:#ff9f43; --c3:#17b890; --c4:#4d7cfe; --c5:#9b6bff;
+  --grad:linear-gradient(120deg,var(--c1),var(--c2),var(--c3),var(--c4),var(--c5));
+  --grad-soft:linear-gradient(120deg,rgba(255,93,115,.14),rgba(255,159,67,.14),rgba(23,184,144,.14),rgba(77,124,254,.14),rgba(155,107,255,.14));
+  --shadow-card:0 12px 32px rgba(27,35,55,.08),0 2px 8px rgba(27,35,55,.05);
+  --shadow-hover:0 26px 64px rgba(27,35,55,.15),0 8px 20px rgba(27,35,55,.08);
+  --grid-line:rgba(70,100,160,.12);
+  --toast-bg:rgba(27,35,55,.92);
+  --font-body:'Noto Sans SC',sans-serif;
+  --font-hand:'Zhi Mang Xing',cursive;
+  --font-write:'Ma Shan Zheng',cursive;
+  --font-mono:'JetBrains Mono',monospace;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --radius:24px; --radius-lg:32px;
+}
+html[data-theme=dark]{
+  --bg:#0a0f1e; --bg-2:#101a33;
+  --surface:rgba(18,26,50,.55); --surface-strong:rgba(23,33,62,.92);
+  --ink:#e9edf8; --ink-soft:#a6b0cb; --ink-faint:#67728f;
+  --line:rgba(233,237,248,.10); --line-strong:rgba(233,237,248,.20);
+  --c1:#ff6b81; --c2:#ffb64d; --c3:#2ce0bb; --c4:#6d9bff; --c5:#b58cff;
+  --grad-soft:linear-gradient(120deg,rgba(255,107,129,.18),rgba(255,182,77,.18),rgba(44,224,187,.18),rgba(109,155,255,.18),rgba(181,140,255,.18));
+  --shadow-card:0 14px 34px rgba(0,0,0,.42);
+  --shadow-hover:0 28px 70px rgba(0,0,0,.58);
+  --grid-line:rgba(140,170,230,.09);
+  --toast-bg:rgba(16,24,48,.96);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-body);background:var(--bg);color:var(--ink);
+  min-height:100vh;min-height:100svh;display:flex;align-items:center;justify-content:center;
+  padding:24px;overflow-x:hidden;-webkit-font-smoothing:antialiased;
+  transition:background .5s,color .5s;
+}
+body::before{
+  content:'';position:fixed;inset:0;z-index:9997;pointer-events:none;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.app-bg{
+  position:fixed;inset:0;z-index:-3;transition:background .6s;
+  background:
+    radial-gradient(42% 55% at 10% 6%, rgba(255,93,115,.13), transparent 62%),
+    radial-gradient(46% 52% at 90% 10%, rgba(77,124,254,.14), transparent 62%),
+    radial-gradient(52% 55% at 84% 92%, rgba(23,184,144,.12), transparent 62%),
+    radial-gradient(40% 50% at 6% 94%, rgba(155,107,255,.11), transparent 62%),
+    var(--bg);
+}
+html[data-theme=dark] .app-bg{
+  background:
+    radial-gradient(42% 55% at 10% 6%, rgba(255,107,129,.16), transparent 62%),
+    radial-gradient(46% 52% at 90% 10%, rgba(109,155,255,.18), transparent 62%),
+    radial-gradient(52% 55% at 84% 92%, rgba(44,224,187,.13), transparent 62%),
+    radial-gradient(40% 50% at 6% 94%, rgba(181,140,255,.15), transparent 62%),
+    var(--bg);
+}
+.blob{position:fixed;border-radius:50%;filter:blur(80px);opacity:.5;z-index:-2;pointer-events:none;will-change:transform}
+.blob-1{width:460px;height:460px;background:radial-gradient(circle at 32% 32%,var(--c1),transparent 70%);top:-150px;left:-130px;animation:blob-a 24s ease-in-out infinite alternate}
+.blob-2{width:400px;height:400px;background:radial-gradient(circle at 60% 40%,var(--c4),transparent 70%);bottom:-160px;right:-100px;animation:blob-b 28s ease-in-out infinite alternate}
+.blob-3{width:340px;height:340px;background:radial-gradient(circle at 50% 50%,var(--c3),transparent 70%);top:44%;left:60%;opacity:.32;animation:blob-a 32s ease-in-out -10s infinite alternate-reverse}
+@keyframes blob-a{to{transform:translate(120px,80px) scale(1.15) rotate(20deg)}}
+@keyframes blob-b{to{transform:translate(-100px,-60px) scale(.9) rotate(-24deg)}}
+#fxCanvas{position:fixed;inset:0;z-index:-1;pointer-events:none}
+.grid-overlay{
+  position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.7;
+  background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);
+  background-size:46px 46px;
+  -webkit-mask-image:radial-gradient(75% 70% at 50% 50%,#000 0%,transparent 78%);
+  mask-image:radial-gradient(75% 70% at 50% 50%,#000 0%,transparent 78%);
+}
+::selection{background:var(--c2);color:#fff}
+
+/* ================= 光标 ================= */
+.cursor-dot,.cursor-ring,.cursor-glow{position:fixed;top:0;left:0;pointer-events:none;z-index:9998;opacity:0;transition:opacity .25s}
+.cursor-dot{width:8px;height:8px;border-radius:50%;background:var(--grad);transform:translate(-50%,-50%)}
+.cursor-ring{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--c4);transform:translate(-50%,-50%);transition:width .28s var(--ease),height .28s var(--ease),border-color .28s,opacity .25s,background .28s}
+.cursor-ring.grow{width:58px;height:58px;border-color:var(--c1);background:radial-gradient(circle,rgba(255,93,115,.14),transparent 72%)}
+.cursor-glow{width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(255,93,115,.17),rgba(255,159,67,.09) 36%,rgba(77,124,254,.09) 58%,transparent 74%);z-index:0;transform:translate(-50%,-50%);transition:opacity .5s;will-change:transform}
+body.cursor-on .cursor-dot,body.cursor-on .cursor-ring,body.cursor-on .cursor-glow{opacity:1}
+@media (hover:none),(pointer:coarse){.cursor-dot,.cursor-ring,.cursor-glow{display:none}}
+
+/* ================= 主题切换 ================= */
+.theme-toggle{
+  position:fixed;top:18px;right:18px;z-index:100;width:44px;height:44px;border-radius:14px;
+  border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  display:grid;place-items:center;font-size:19px;cursor:pointer;
+  box-shadow:var(--shadow-card);transition:transform .3s var(--ease),border-color .3s,box-shadow .35s;
+  animation:pop-in .8s var(--ease) 1s both;
+}
+.theme-toggle:hover{transform:translateY(-3px) scale(1.08);border-color:var(--c4);box-shadow:var(--shadow-hover)}
+
+/* ================= 主卡片 ================= */
+.stage{position:relative;z-index:2;width:100%;max-width:660px}
+.float-emoji{position:absolute;font-size:34px;opacity:.85;filter:drop-shadow(0 10px 22px rgba(27,35,55,.18));pointer-events:none;z-index:1;animation:float-y 7s ease-in-out infinite}
+.fe-1{top:-46px;left:-34px;animation-delay:0s}
+.fe-2{top:8%;right:-46px;animation-delay:-2.2s}
+.fe-3{bottom:4%;left:-40px;animation-delay:-4.4s}
+.fe-4{bottom:-44px;right:6%;animation-delay:-1.4s}
+@keyframes float-y{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-16px) rotate(5deg)}}
+.card{
+  position:relative;border-radius:var(--radius-lg);padding:56px 48px 44px;text-align:center;
+  background:var(--surface-strong);border:1px solid var(--glass-border);
+  box-shadow:var(--shadow-hover);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  transform-style:preserve-3d;overflow:hidden;will-change:transform;
+  animation:card-in 1s var(--ease-out) .15s both;
+}
+html[data-theme=dark] .card{border-color:rgba(255,255,255,.09)}
+.card::before{content:'';position:absolute;inset:0;background:radial-gradient(340px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.5),transparent 62%);opacity:0;transition:opacity .4s;pointer-events:none}
+html[data-theme=dark] .card::before{background:radial-gradient(340px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.08),transparent 62%)}
+.card:hover::before{opacity:1}
+.card::after{
+  content:'';position:absolute;inset:0;border-radius:inherit;padding:1.6px;pointer-events:none;
+  background:linear-gradient(135deg,var(--c1),var(--c3),var(--c4),var(--c5),var(--c1));background-size:300% 300%;
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;
+  mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude;
+  animation:grad-move 6s linear infinite;opacity:.85;
+}
+@keyframes card-in{from{opacity:0;transform:translateY(44px) scale(.95)}to{opacity:1;transform:none}}
+.card>*{opacity:0;animation:rise-in .85s var(--ease-out) forwards}
+.card>*:nth-child(1){animation-delay:.35s}
+.card>*:nth-child(2){animation-delay:.45s}
+.card>*:nth-child(3){animation-delay:.55s}
+.card>*:nth-child(4){animation-delay:.65s}
+.card>*:nth-child(5){animation-delay:.78s}
+.card>*:nth-child(6){animation-delay:.9s}
+@keyframes rise-in{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+@keyframes pop-in{0%{opacity:0;transform:scale(.6)}70%{transform:scale(1.06)}100%{opacity:1;transform:scale(1)}}
+
+/* ================= 头像 ================= */
+.avatar-wrap{position:relative;width:120px;height:120px;margin:0 auto 22px}
+.avatar-ring{
+  position:absolute;inset:0;border-radius:50%;
+  background:conic-gradient(from 0deg,var(--c1),var(--c2),var(--c3),var(--c4),var(--c5),var(--c1));
+  animation:avatar-spin 9s linear infinite;filter:drop-shadow(0 12px 28px rgba(255,93,115,.32));
+}
+.avatar-ring::before{content:'';position:absolute;inset:5px;border-radius:50%;background:var(--surface-strong)}
+.avatar{
+  position:absolute;inset:15px;border-radius:50%;
+  background:var(--grad);background-size:200% 200%;animation:grad-move 5s linear infinite;
+  color:#fff;display:grid;place-items:center;font-size:40px;font-weight:900;
+  box-shadow:0 10px 24px rgba(255,93,115,.4);
+}
+@keyframes avatar-spin{to{transform:rotate(360deg)}}
+
+/* ================= 文字 ================= */
+.badge{
+  display:inline-flex;align-items:center;gap:9px;
+  background:rgba(255,93,115,.10);border:1px solid rgba(255,93,115,.30);
+  color:var(--c1);font-size:12px;font-weight:700;letter-spacing:1.5px;
+  padding:6px 18px;border-radius:999px;margin-bottom:22px;
+}
+.pulse-dot{width:8px;height:8px;border-radius:50%;background:var(--c1);animation:pulse-dot 1.8s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{box-shadow:0 0 0 0 rgba(255,93,115,.45)}50%{box-shadow:0 0 0 8px rgba(255,93,115,0)}}
+h1{font-size:clamp(36px,7vw,52px);font-weight:900;letter-spacing:-1px;margin-bottom:12px}
+.grad-text{position:relative;display:inline-block;cursor:default}
+.grad-text::after{
+  content:attr(data-text);position:absolute;inset:0;
+  background:linear-gradient(120deg,#ff2d55,#ff9f0a,#00d9a6,#0a84ff,#bf5af2,#ff2d55);background-size:180% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  -webkit-mask-image:radial-gradient(230px circle at var(--mx,50%) var(--my,50%),#000 0%,transparent 68%);
+  mask-image:radial-gradient(230px circle at var(--mx,50%) var(--my,50%),#000 0%,transparent 68%);
+  animation:grad-move 4s linear infinite;opacity:0;transition:opacity .3s;
+  filter:saturate(1.35) brightness(1.06);pointer-events:none;user-select:none;
+}
+.grad-text:hover::after{opacity:1}
+@keyframes grad-move{to{background-position:200% 0}}
+.sub{font-size:17px;color:var(--ink-soft);line-height:1.9;margin-bottom:10px}
+.type-wrap{display:inline-block;min-width:130px;color:var(--ink);font-weight:700}
+.caret{display:inline-block;width:2px;height:1.02em;background:var(--c1);vertical-align:-.14em;margin-left:2px;animation:caret-blink 1s step-end infinite}
+@keyframes caret-blink{50%{opacity:0}}
+.meta{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;color:var(--ink-faint);margin-top:6px}
+.meta .m-dot{width:5px;height:5px;border-radius:50%;background:var(--c4)}/* ================= 按钮 ================= */
+.btn{
+  position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:9px;
+  padding:15px 38px;border-radius:999px;font-weight:700;font-size:16px;
+  text-decoration:none;cursor:pointer;border:none;
+  transition:transform .3s var(--ease),box-shadow .4s;will-change:transform;
+}
+.btn-primary{
+  background:var(--grad);background-size:200% 200%;color:#fff;
+  box-shadow:0 16px 38px rgba(255,93,115,.4);animation:grad-move 6s linear infinite;
+}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 24px 54px rgba(255,93,115,.5)}
+.btn-primary::after{
+  content:'';position:absolute;top:0;left:-70%;width:50%;height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);
+  transform:skewX(-20deg);transition:left .6s var(--ease);
+}
+.btn-primary:hover::after{left:135%}
+/* 修复：按钮入场动画与渐变流动动画共存（避免 opacity 卡在 0 导致按钮隐形） */
+.card > .btn{opacity:0;animation:rise-in .85s var(--ease-out) .78s forwards,grad-move 6s linear infinite}
+.btn .ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.5);transform:scale(0);animation:ripple .65s var(--ease) forwards;pointer-events:none}
+@keyframes ripple{to{transform:scale(1);opacity:0}}
+
+/* ================= 链接 ================= */
+.links{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:30px}
+.link{
+  display:inline-flex;align-items:center;gap:7px;padding:9px 20px;border-radius:999px;
+  background:var(--surface);border:1px solid var(--line-strong);color:var(--ink-soft);
+  font-size:14px;font-weight:600;text-decoration:none;
+  transition:transform .3s var(--ease),color .3s,border-color .3s,box-shadow .35s,background .3s;
+}
+.link:hover{
+  transform:translateY(-3px);color:#fff;border-color:transparent;
+  background:var(--grad);background-size:200% 200%;animation:grad-move 4s linear infinite;
+  box-shadow:0 12px 26px rgba(255,93,115,.3);
+}
+
+/* ================= 页脚注 ================= */
+.footer-note{margin-top:34px;font-family:var(--font-write);font-size:19px;color:var(--ink-faint);letter-spacing:2px}
+
+/* ================= 火花 / 彩带 ================= */
+.sparkle{position:fixed;width:6px;height:6px;border-radius:50%;background:var(--grad);pointer-events:none;z-index:9996;animation:sparkle-fly .7s var(--ease-out) forwards}
+@keyframes sparkle-fly{0%{opacity:1;transform:scale(1) translateY(0)}100%{opacity:0;transform:scale(.15) translateY(-22px)}}
+.confetti{position:fixed;top:-12px;z-index:400;pointer-events:none;font-size:16px;animation:confetti-fall linear forwards}
+@keyframes confetti-fall{to{transform:translate(var(--cx,0),105vh) rotate(var(--cr,360deg));opacity:.9}}
+
+/* ================= 响应式 ================= */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+}
+@media (max-width:560px){
+  .card{padding:40px 24px 34px}
+  h1{font-size:34px}
+  .sub{font-size:15px}
+  .float-emoji{display:none}
+  .theme-toggle{top:12px;right:12px}
+}
+</style>
+</head>
+<body>
+<div class="app-bg"></div>
+<div class="grid-overlay"></div>
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+<canvas id="fxCanvas"></canvas>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<button class="theme-toggle" id="themeToggle" title="切换深色 / 浅色模式">🌙</button>
+
+<main class="stage">
+  <span class="float-emoji fe-1">🤖</span>
+  <span class="float-emoji fe-2">📷</span>
+  <span class="float-emoji fe-3">❤️</span>
+  <span class="float-emoji fe-4">⛰️</span>
+
+  <div class="card" id="mainCard">
+    <div class="avatar-wrap">
+      <div class="avatar-ring"></div>
+      <div class="avatar">李</div>
+    </div>
+    <div class="badge"><span class="pulse-dot"></span>✦ 学生成长记录</div>
+    <h1><span class="grad-text" data-text="李兆昕">李兆昕</span></h1>
+    <p class="sub">对 <span class="type-wrap"><span id="typed"></span><span class="caret"></span></span> 和世界充满好奇<br>
+      <span class="meta"><span class="m-dot"></span>日照第一中学 · 海曲校区</span>
+    </p>
+    <a href="portfolio.html" class="btn btn-primary magnetic">进入我的成长主页 →</a>
+    <div class="links">
+      <a href="mailto:a776234813@outlook.com" class="link">📧 邮箱</a>
+      <a href="#" class="link">💬 微信</a>
+      <a href="https://github.com/Likiukin" class="link" target="_blank" rel="noopener">🔗 GitHub</a>
+    </div>
+    <div class="footer-note">—— 持续生长，保持热爱 ——</div>
+  </div>
+</main><script>
+(function(){
+"use strict";
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const canHover = window.matchMedia('(hover:hover)').matches && window.matchMedia('(pointer:fine)').matches;
+const $ = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
+
+/* ===== 主题切换（与成长主页共用记忆） ===== */
+const themeBtn = $('#themeToggle');
+const savedTheme = localStorage.getItem('lzx_theme') || 'light';
+document.documentElement.setAttribute('data-theme', savedTheme);
+themeBtn.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+themeBtn.addEventListener('click', () => {
+  const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('lzx_theme', next);
+  themeBtn.textContent = next === 'dark' ? '☀️' : '🌙';
+  themeBtn.style.transform = 'rotate(180deg) scale(1.15)';
+  setTimeout(() => themeBtn.style.transform = '', 350);
+  if (window.fx) window.fx.refresh();
+});
+
+/* ===== 打字机 ===== */
+(function(){
+  const el = $('#typed');
+  const phrases = ['AI', '设计', '数码', '公益', '摄影'];
+  if (reduceMotion){ el.textContent = 'AI'; return; }
+  let pi = 0, ci = 0, deleting = false;
+  function tick(){
+    const word = phrases[pi];
+    ci += deleting ? -1 : 1;
+    el.textContent = word.slice(0, ci);
+    let delay = deleting ? 45 : 85;
+    if (!deleting && ci === word.length){ delay = 1500; deleting = true; }
+    else if (deleting && ci === 0){ deleting = false; pi = (pi + 1) % phrases.length; delay = 350; }
+    setTimeout(tick, delay);
+  }
+  setTimeout(tick, 1200);
+})();
+
+/* ===== 自定义光标 + 辉光 + 星光 ===== */
+if (canHover && !reduceMotion){
+  const dot = $('#cursorDot'), ring = $('#cursorRing'), glow = $('#cursorGlow');
+  let dx=0, dy=0, rx=0, ry=0, gx=0, gy=0, tx=0, ty=0;
+  document.addEventListener('mousemove', e => {
+    tx = e.clientX; ty = e.clientY;
+    document.body.classList.add('cursor-on');
+  });
+  document.addEventListener('mouseleave', () => document.body.classList.remove('cursor-on'));
+  (function loop(){
+    dx += (tx - dx) * .9; dy += (ty - dy) * .9;
+    rx += (tx - rx) * .16; ry += (ty - ry) * .16;
+    gx += (tx - gx) * .07; gy += (ty - gy) * .07;
+    dot.style.transform = `translate(${dx}px, ${dy}px) translate(-50%,-50%)`;
+    ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%,-50%)`;
+    if (glow) glow.style.transform = `translate(${gx}px, ${gy}px) translate(-50%,-50%)`;
+    requestAnimationFrame(loop);
+  })();
+  const growTargets = 'a, button, .card, .avatar, .link, .float-emoji';
+  document.addEventListener('mouseover', e => {
+    if (e.target.closest && e.target.closest(growTargets)) ring.classList.add('grow');
+  });
+  document.addEventListener('mouseout', e => {
+    if (e.target.closest && e.target.closest(growTargets)) ring.classList.remove('grow');
+  });
+  let lastSpark = 0;
+  document.addEventListener('mousemove', e => {
+    const now = performance.now();
+    if (now - lastSpark < 70) return;
+    lastSpark = now;
+    const s = document.createElement('span');
+    s.className = 'sparkle';
+    s.style.left = (e.clientX + (Math.random()*10-5)) + 'px';
+    s.style.top = (e.clientY + (Math.random()*10-5)) + 'px';
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 750);
+  }, {passive:true});
+}
+
+/* ===== 背景粒子 ===== */
+(function(){
+  const canvas = $('#fxCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, dots = [], running = true;
+  const isDark = () => document.documentElement.getAttribute('data-theme') === 'dark';
+  function resize(){ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+  function makeDots(){
+    const count = reduceMotion ? 0 : Math.min(40, Math.floor(W * H / 32000));
+    dots = Array.from({length: count}, () => ({
+      x: Math.random()*W, y: Math.random()*H,
+      vx: (Math.random()-.5)*.3, vy: (Math.random()-.5)*.3,
+      r: Math.random()*1.8 + .6,
+      hue: Math.floor(Math.random()*6)*60
+    }));
+  }
+  window.fx = window.fx || {};
+  window.fx.refresh = () => { if (isDark()) makeDots(); };
+  if (reduceMotion){ resize(); makeDots(); return; }
+  let mx = -9999, my = -9999;
+  if (canHover) document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; }, {passive:true});
+  document.addEventListener('visibilitychange', () => {
+    running = !document.hidden;
+    if (running) requestAnimationFrame(draw);
+  });
+  function draw(){
+    if (!running) return;
+    ctx.clearRect(0, 0, W, H);
+    const dark = isDark();
+    const alpha = dark ? .5 : .28;
+    const lum = dark ? 70 : 45;
+    for (let i = 0; i < dots.length; i++){
+      const d = dots[i];
+      d.x += d.vx; d.y += d.vy;
+      if (d.x < -20) d.x = W+20; else if (d.x > W+20) d.x = -20;
+      if (d.y < -20) d.y = H+20; else if (d.y > H+20) d.y = -20;
+      const dx = d.x - mx, dy = d.y - my;
+      const dist2 = dx*dx + dy*dy;
+      if (dist2 < 16900 && dist2 > 0.01){
+        const m = 130 / Math.sqrt(dist2);
+        d.x += dx/m * .32; d.y += dy/m * .32;
+      }
+      ctx.beginPath();
+      ctx.arc(d.x, d.y, d.r, 0, Math.PI*2);
+      ctx.fillStyle = 'hsla(' + d.hue + ',80%,' + lum + '%,' + alpha + ')';
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+  resize(); makeDots(); draw();
+  window.addEventListener('resize', () => { resize(); makeDots(); });
+})();
+
+/* ===== 卡片聚光灯 + 微倾斜 ===== */
+const card = $('#mainCard');
+if (card && canHover && !reduceMotion){
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const px = (e.clientX - r.left)/r.width - .5;
+    const py = (e.clientY - r.top)/r.height - .5;
+    card.style.setProperty('--mx', ((e.clientX - r.left)/r.width*100) + '%');
+    card.style.setProperty('--my', ((e.clientY - r.top)/r.height*100) + '%');
+    card.style.transform = `perspective(1000px) rotateX(${(-py*3).toFixed(2)}deg) rotateY(${(px*3).toFixed(2)}deg)`;
+  });
+  card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+}
+
+/* ===== 磁性按钮 + 涟漪 ===== */
+const btn = $('.btn');
+if (btn && canHover && !reduceMotion){
+  btn.addEventListener('mousemove', e => {
+    const r = btn.getBoundingClientRect();
+    const x = e.clientX - r.left - r.width/2, y = e.clientY - r.top - r.height/2;
+    btn.style.transform = `translate(${x*.22}px, ${y*.22}px)`;
+  });
+  btn.addEventListener('mouseleave', () => btn.style.transform = '');
+}
+$$('.btn, .link').forEach(b => {
+  b.addEventListener('click', function(e){
+    const r = this.getBoundingClientRect();
+    const size = Math.max(r.width, r.height) * 1.5;
+    const rip = document.createElement('span');
+    rip.className = 'ripple';
+    rip.style.width = rip.style.height = size + 'px';
+    rip.style.left = (e.clientX - r.left - size/2) + 'px';
+    rip.style.top = (e.clientY - r.top - size/2) + 'px';
+    this.appendChild(rip);
+    setTimeout(() => rip.remove(), 700);
+  });
+});
+
+/* ===== 彩带 ===== */
+function confettiBurst(n){
+  if (reduceMotion) return;
+  const colors = ['#ff5d73','#ff9f43','#17b890','#4d7cfe','#9b6bff','#ffd93d'];
+  for (let i = 0; i < n; i++){
+    const c = document.createElement('span');
+    c.className = 'confetti';
+    c.textContent = ['✨','❤','★','●','✦','♦'][Math.floor(Math.random()*6)];
+    c.style.left = Math.random()*100 + 'vw';
+    c.style.color = colors[Math.floor(Math.random()*colors.length)];
+    c.style.fontSize = (10 + Math.random()*12) + 'px';
+    c.style.setProperty('--cx', (Math.random()*160-80) + 'px');
+    c.style.setProperty('--cr', (Math.random()*720-360) + 'deg');
+    c.style.animationDuration = (2.4 + Math.random()*2.2) + 's';
+    c.style.animationDelay = (Math.random()*.8) + 's';
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 6000);
+  }
+}
+
+/* ===== 点击头像彩蛋 ===== */
+const av = $('.avatar');
+if (av) av.addEventListener('click', () => confettiBurst(22));
+
+/* ===== 键盘彩蛋：lzx ===== */
+(function(){
+  let buf = '';
+  document.addEventListener('keydown', e => {
+    buf = (buf + e.key.toLowerCase()).slice(-3);
+    if (buf === 'lzx'){ buf = ''; confettiBurst(46); }
+  });
+})();
+})();
+</script>
+</body>
+</html>
