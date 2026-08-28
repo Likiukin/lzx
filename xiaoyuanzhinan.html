@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="海曲高中手机生存指南：校园 WiFi 密码、充电攻略与藏手机指南" />
+<title>海曲高中手机生存指南 · 校园指南</title>
+<style>
+:root{
+  --bg:#f6f5f1; --bg-2:#efedf6; --bg-3:#eef7f4;
+  --surface:rgba(255,255,255,.66); --surface-strong:rgba(255,255,255,.92);
+  --ink:#1b2337; --ink-soft:#565f78; --ink-faint:#8b94ab;
+  --line:rgba(27,35,55,.10); --line-strong:rgba(27,35,55,.18);
+  --c1:#ff5d73; --c2:#ff9f43; --c3:#17b890; --c4:#4d7cfe; --c5:#9b6bff;
+  --grad:linear-gradient(120deg,var(--c1),var(--c2),var(--c3),var(--c4),var(--c5));
+  --shadow-card:0 12px 32px rgba(27,35,55,.08),0 2px 8px rgba(27,35,55,.05);
+  --shadow-hover:0 26px 64px rgba(27,35,55,.15),0 8px 20px rgba(27,35,55,.08);
+  --ease:cubic-bezier(.22,1,.36,1);
+  --radius:20px; --radius-lg:28px;
+}
+html[data-theme=dark]{
+  --bg:#0a0f1e; --bg-2:#101a33; --bg-3:#0e1e23;
+  --surface:rgba(18,26,50,.55); --surface-strong:rgba(23,33,62,.9);
+  --ink:#e9edf8; --ink-soft:#a6b0cb; --ink-faint:#67728f;
+  --line:rgba(233,237,248,.10); --line-strong:rgba(233,237,248,.18);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{font-family:'Segoe UI','PingFang SC','Microsoft YaHei',system-ui,sans-serif;color:var(--ink);overflow:hidden;background:var(--bg)}
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.4;animation:float 18s ease-in-out infinite}
+.blob.b1{width:420px;height:420px;background:linear-gradient(135deg,#ff5d73,#ff9f43);top:-120px;left:-80px}
+.blob.b2{width:400px;height:400px;background:linear-gradient(135deg,#4d7cfe,#9b6bff);bottom:-110px;right:-70px;animation-delay:-6s}
+.blob.b3{width:300px;height:300px;background:linear-gradient(135deg,#17b890,#4d7cfe);top:35%;left:58%;animation-delay:-11s;opacity:.28}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(50px,-35px) scale(1.1)}}
+
+.topbar{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:14px 22px;background:var(--surface);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:800;letter-spacing:1px}
+.brand .dot{width:10px;height:10px;border-radius:50%;background:var(--grad)}
+.back-link{font-size:13px;color:var(--ink-soft);text-decoration:none;font-weight:600;transition:color .3s;display:flex;align-items:center;gap:4px}
+.back-link:hover{color:var(--c4)}
+.theme-btn{border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);width:38px;height:38px;border-radius:12px;cursor:pointer;font-size:17px;display:grid;place-items:center;transition:transform .3s var(--ease),box-shadow .3s}
+.theme-btn:hover{transform:rotate(15deg) scale(1.08);box-shadow:var(--shadow-card)}
+
+.deck-wrap{position:relative;z-index:10;height:100%;display:flex;align-items:center;justify-content:center;padding:84px 18px 64px}
+.deck{position:relative;width:100%;max-width:900px;aspect-ratio:16/9;max-height:calc(100vh - 170px);border-radius:var(--radius-lg);background:var(--surface-strong);box-shadow:var(--shadow-hover);border:1px solid var(--line);overflow:hidden}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:34px 48px;text-align:center;opacity:0;visibility:hidden;transform:translateX(46px) scale(.97);transition:opacity .55s var(--ease),transform .55s var(--ease),visibility .55s}
+.slide.active{opacity:1;visibility:visible;transform:none}
+.s-ico{font-size:52px;line-height:1;filter:drop-shadow(0 8px 18px rgba(0,0,0,.15))}
+.s-title{font-size:34px;font-weight:900;letter-spacing:2px}
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.s-desc{font-size:15px;color:var(--ink-soft)}
+.s-desc b{color:var(--c4)}
+.tip{margin-top:4px;font-size:13px;color:var(--ink-faint)}
+
+.kicker{font-size:12px;letter-spacing:4px;color:var(--ink-faint);font-weight:700}
+.cover-title{font-size:44px;font-weight:900;letter-spacing:3px;line-height:1.3}
+.cover-sub{font-size:16px;color:var(--ink-soft)}
+.start-btn{margin-top:10px;border:none;cursor:pointer;color:#fff;font-size:16px;font-weight:800;letter-spacing:2px;padding:13px 38px;border-radius:999px;background:var(--grad);background-size:200% 200%;animation:gradShift 5s ease infinite;box-shadow:0 14px 34px rgba(77,124,254,.35);transition:transform .3s var(--ease)}
+.start-btn:hover{transform:translateY(-3px) scale(1.04)}
+@keyframes gradShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+
+.wifi-card{width:min(420px,100%);margin-top:6px;padding:22px 26px;border-radius:18px;background:var(--bg-2);border:1px solid var(--line);box-shadow:var(--shadow-card);display:flex;flex-direction:column;gap:12px;align-items:center}
+.wifi-name{font-size:17px;font-weight:800;display:flex;align-items:center;gap:8px}
+.wifi-pass{font-size:14px;color:var(--ink-soft)}
+.wifi-pass b{font-size:22px;font-weight:900;color:var(--c3);letter-spacing:4px;font-family:Consolas,monospace}
+
+.cards2,.hide-row{display:flex;gap:16px;margin-top:6px;width:100%;justify-content:center;flex-wrap:wrap}
+.mini-card{flex:1;min-width:220px;max-width:280px;padding:20px 18px;border-radius:18px;background:var(--bg-2);border:1px solid var(--line);box-shadow:var(--shadow-card);display:flex;flex-direction:column;gap:8px;align-items:center;text-align:center;transition:transform .35s var(--ease),box-shadow .35s}
+.mini-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-hover)}
+.mc-ico{font-size:34px}
+.mini-card h3{font-size:16px;font-weight:800}
+.mini-card p{font-size:13px;color:var(--ink-soft);line-height:1.7}
+
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;align-items:center;justify-content:center;gap:18px;padding:14px 0;background:var(--surface);backdrop-filter:blur(14px);border-top:1px solid var(--line)}
+.nav-btn{border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);width:42px;height:42px;border-radius:50%;cursor:pointer;font-size:18px;display:grid;place-items:center;transition:transform .3s var(--ease),background .3s,color .3s}
+.nav-btn:hover{background:var(--grad);color:#fff;transform:scale(1.1)}
+.dots{display:flex;gap:8px}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--line-strong);cursor:pointer;border:none;padding:0;transition:all .3s var(--ease)}
+.dot.active{width:26px;border-radius:999px;background:var(--grad)}
+.counter{font-family:Consolas,monospace;font-size:13px;color:var(--ink-faint);min-width:44px;text-align:center}
+.progress{position:absolute;top:0;left:0;height:3px;background:var(--grad);width:0;transition:width .5s var(--ease);z-index:5;border-radius:0 3px 3px 0}
+
+@media(max-width:640px){
+  .cover-title{font-size:30px}
+  .s-title{font-size:24px}
+  .slide{padding:26px 20px;gap:10px}
+  .deck{border-radius:18px}
+  .mini-card{min-width:100%;max-width:100%}
+  .s-ico{font-size:40px}
+}
+</style>
+</head>
+<body>
+<div class="bg"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+
+<header class="topbar">
+  <div class="brand"><span class="dot"></span>校园指南</div>
+  <div style="display:flex;align-items:center;gap:12px">
+    <a class="back-link" href="portfolio.html">← 返回主页</a>
+    <button class="theme-btn" id="themeBtn" title="切换深浅色">🌙</button>
+  </div>
+</header>
+
+<main class="deck-wrap">
+  <div class="deck" id="deck">
+    <div class="progress" id="progress"></div>
+
+    <section class="slide active">
+      <span class="kicker">HAIQU CAMPUS · SURVIVAL GUIDE</span>
+      <h1 class="cover-title"><span class="grad-text">海曲高中</span><br>手机生存指南</h1>
+      <p class="cover-sub">充电 · WiFi · 藏机 三大生存技能，一次讲清</p>
+      <button class="start-btn" onclick="go(1)">开始浏览 →</button>
+    </section>
+
+    <section class="slide">
+      <span class="s-ico">🔑</span>
+      <h2 class="s-title">校园 WiFi 密码</h2>
+      <p class="s-desc">在教学楼里，找到 <b>AP 开头</b> 的 WiFi 就行</p>
+      <div class="wifi-card">
+        <div class="wifi-name">📶 AP-教学楼 WiFi</div>
+        <div class="wifi-pass">密码：<b>12345678</b></div>
+      </div>
+      <p class="tip">💡 密码基本都是 12345678，输入就完事</p>
+    </section>
+
+    <section class="slide">
+      <span class="s-ico">🔋</span>
+      <h2 class="s-title">充电攻略</h2>
+      <p class="s-desc">手机没电了怎么办？两条路随便选</p>
+      <div class="cards2">
+        <div class="mini-card"><div class="mc-ico">🤝</div><h3>找走读同学代充</h3><p>让走读的同学帮忙带回家充电，第二天满血复活</p></div>
+        <div class="mini-card"><div class="mc-ico">⚡</div><h3>教室电箱充电</h3><p>教室白板右上角的电箱里，有一个空闲插座可以应急</p></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <span class="s-ico">📱</span>
+      <h2 class="s-title">藏手机指南</h2>
+      <div class="hide-row">
+        <div class="mini-card"><div class="mc-ico">😎</div><h3>心态篇</h3><p>胆子大就全天带上；胆子小就放书包，或藏在不透明笔袋的夹层里</p></div>
+        <div class="mini-card"><div class="mc-ico">🏫</div><h3>教室篇</h3><p>可以藏在柜子里，桌洞也能藏，但玩的时候别太明显，被发现就没地方躲了</p></div>
+        <div class="mini-card"><div class="mc-ico">🛏️</div><h3>宿舍篇</h3><p>空调上面、窗帘背面、枕头枕套里、垃圾桶的垃圾袋下面……剩下的自己探索吧</p></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <span class="s-ico">🚧</span>
+      <h2 class="s-title">更多内容 · <span class="grad-text">完善中</span></h2>
+      <p class="s-desc">生存指南持续更新中，更多校园生存技巧敬请期待</p>
+      <div class="wifi-card" style="flex-direction:row;gap:14px;padding:20px 26px;width:min(460px,100%)">
+        <span style="font-size:34px">🛠️</span>
+        <span style="font-size:14px;color:var(--ink-soft)">新板块正在制作中，很快与你见面～</span>
+      </div>
+    </section>
+  </div>
+</main>
+
+<nav class="nav">
+  <button class="nav-btn" onclick="go(cur-1)">←</button>
+  <div class="dots" id="dots"></div>
+  <span class="counter" id="counter">1 / 4</span>
+  <button class="nav-btn" onclick="go(cur+1)">→</button>
+</nav>
+
+<script>
+var slides=document.querySelectorAll('.slide');
+var cur=0;
+var dotsWrap=document.getElementById('dots');
+var counter=document.getElementById('counter');
+var progress=document.getElementById('progress');
+for(var i=0;i<slides.length;i++){
+  var d=document.createElement('button');
+  d.className='dot'+(i===0?' active':'');
+  d.setAttribute('aria-label','第 '+(i+1)+' 页');
+  (function(n){d.onclick=function(){go(n);};})(i);
+  dotsWrap.appendChild(d);
+}
+function go(n){
+  cur=Math.max(0,Math.min(slides.length-1,n));
+  for(var i=0;i<slides.length;i++){slides[i].classList.toggle('active',i===cur);}
+  var ds=dotsWrap.children;
+  for(var j=0;j<ds.length;j++){ds[j].classList.toggle('active',j===cur);}
+  counter.textContent=(cur+1)+' / '+slides.length;
+  progress.style.width=((cur+1)/slides.length*100)+'%';
+}
+document.addEventListener('keydown',function(e){
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();go(cur+1);}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(cur-1);}
+  else if(e.key==='Home'){go(0);}
+  else if(e.key==='End'){go(slides.length-1);}
+});
+var deck=document.getElementById('deck');
+var sx=0;
+deck.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;},{passive:true});
+deck.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>50){go(cur+(dx<0?1:-1));}},{passive:true});
+var themeBtn=document.getElementById('themeBtn');
+function applyTheme(t){document.documentElement.dataset.theme=t;themeBtn.textContent=(t==='dark'?'☀️':'🌙');}
+try{applyTheme(localStorage.getItem('xyn-theme')||'light');}catch(e){}
+themeBtn.onclick=function(){var t=document.documentElement.dataset.theme==='dark'?'light':'dark';applyTheme(t);try{localStorage.setItem('xyn-theme',t);}catch(e){}};
+go(0);
+</script>
+</body>
+</html>
